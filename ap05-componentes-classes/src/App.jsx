@@ -21,7 +21,7 @@ class App extends React.Component{
     }
 
     obterEstacao = (latitude, data) => {
-      const anoAtual = dataFullYear()
+      const anoAtual = data.getFullYear()
 
       const d1 = new Date(anoAtual, 5, 21)
 
@@ -50,9 +50,9 @@ class App extends React.Component{
             dataAtual
           ) 
           const icone = this.icones[estacao]
-          this.state.icone = icone
+          //this.state.icone = icone
           this.setState({
-            icone:icone
+            icone: icone
           })
         },
         (err) =>{
