@@ -1,5 +1,5 @@
 import React from 'react'
-
+import Lontra from './Lontra'
 class App extends React.Component{
 
   constructor(props){
@@ -12,6 +12,7 @@ class App extends React.Component{
         icone: null
       }
     }
+
 
     icones = {
       'Primavera': 'tree-large',
@@ -52,25 +53,80 @@ class App extends React.Component{
           const icone = this.icones[estacao]
           //this.state.icone = icone
           this.setState({
-            icone: icone
+            icone: icone,
+            estacao: estacao,
+            data: dataAtual,
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude
           })
         },
         (err) =>{
           console.log(`Erro: ${err}`)
+          this.setState({
+            mensagemDeErro: `Tente Novamente mais tarde.Veja o que aconteceu ${err}`
+          })
+          
         }
       )
     }
     
-    componentDidMount(){
-      this.obterLocalizacao()
-    }
+    // componentDidMount(){
+    //   this.obterLocalizacao()
+    // }
 
   render(){
     return(
-      <div>
-        <div><i className="fa-solid fa-otter"></i></div>
-        <div><i className={`fa-solid fa-${this.state.icone}`}></i></div>
-        <p>Meu App</p>
+      <div className='container mt-2'>
+        <div className='row'>
+          <div className='col-12'>
+                <div>
+                  {
+                  Lontra.map(() => (
+                    <i class
+                  )
+                  )
+                  }
+                  <i className="fa-solid fa-otter fa-3x"></i>
+                
+                </div>
+      </div>
+      </div>
+        <div className='row'>
+          <div className='col-sm-12'>
+            <div className="card">
+              <div className="card-body" style={{height: '6rem'}}>
+                <div className='d-flex border align-items-center rounded mb-2'
+                style={{height:'6rem'}}>
+                  <i className={`fa-solid fa-4x fa-${this.state.icone}`}></i>
+                  <p className='w-75 text-center fs-1'>{this.state.estacao}</p>
+                </div>
+                <div>
+                  {   }
+                  {
+                    this.state.latitude ? 
+                    `coordenadas: ${this.state.latitude},${this.state.longitude}, Data: ${this.state.data.toLocaleString()}`:
+                   
+                    this.state.mensagemDeErro ?
+                    `${this.state.mensagemDeErro}`:
+                    `precisa liberar o acesso a localização`
+                  }
+                </div>
+                <button
+                className='btn btn-outline-primary w-100 mt-2' 
+                onClick={this.obterLocalizacao}
+                >
+                  qual a minha localização
+                </button>
+                
+            {/* em: mutiplica a fonte base por um numero, ex:4em, caso não seja definido é mutiplicado a fonte base  
+            rem:  */}
+          
+              </div>
+              
+            </div>
+          </div>
+        </div>
+        
       </div>
     )
   }
